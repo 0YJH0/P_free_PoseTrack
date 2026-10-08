@@ -1,0 +1,110 @@
+{
+  "case": "cheezit/02",
+  "analysis_policy": "read-only; no parameter or exclusion change",
+  "baseline_replicates": [
+    {
+      "replicate": 0,
+      "add_mm": 70.0974,
+      "auc": 50.6493,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    },
+    {
+      "replicate": 1,
+      "add_mm": 68.0806,
+      "auc": 50.6642,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    },
+    {
+      "replicate": 2,
+      "add_mm": 67.0205,
+      "auc": 50.5597,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    }
+  ],
+  "v4_replicates": [
+    {
+      "replicate": 0,
+      "add_mm": 119.335,
+      "auc": 50.403,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    },
+    {
+      "replicate": 1,
+      "add_mm": 119.335,
+      "auc": 50.403,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    },
+    {
+      "replicate": 2,
+      "add_mm": 119.335,
+      "auc": 50.403,
+      "initial_geometry_sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d"
+    }
+  ],
+  "replicate_initial_geometry_hashes_match": true,
+  "trust_checks": [
+    {
+      "pre_reference_iou": 0.6299392580986023,
+      "post_reference_iou": 0.6237261891365051,
+      "pre_holdout_iou": 0.5489804148674011,
+      "post_holdout_iou": 0.5621922612190247,
+      "max_vertex_step_ratio": 0.0731579065322876,
+      "accepted": false
+    },
+    {
+      "pre_reference_iou": 0.6299392580986023,
+      "post_reference_iou": 0.5940512418746948,
+      "pre_holdout_iou": 0.4194459319114685,
+      "post_holdout_iou": 0.4608147144317627,
+      "max_vertex_step_ratio": 0.15539711713790894,
+      "accepted": false
+    }
+  ],
+  "baseline_meshes": [
+    {
+      "mesh": "_realtime_1.obj",
+      "sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d",
+      "equals_initial_bytes": true,
+      "mean_vertex_displacement": 0.0,
+      "max_vertex_displacement": 0.0
+    },
+    {
+      "mesh": "_realtime_2.obj",
+      "sha256": "a22d0aa5ce6560e4e9bf219fa01a9e52ea9b99798152e66e3a97afc3fadc5440",
+      "equals_initial_bytes": false,
+      "mean_vertex_displacement": 0.07133781806964166,
+      "max_vertex_displacement": 0.20883298472514175
+    },
+    {
+      "mesh": "_realtime_3.obj",
+      "sha256": "ef674d53c0ffc57109cd0d61bbd1ce5aeed80beda3b993c6cff02bc3f3df64bc",
+      "equals_initial_bytes": false,
+      "mean_vertex_displacement": 0.11036643309473475,
+      "max_vertex_displacement": 0.3917138691321763
+    }
+  ],
+  "v4_meshes": [
+    {
+      "mesh": "_realtime_1.obj",
+      "sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d",
+      "equals_initial_bytes": true,
+      "mean_vertex_displacement": 0.0,
+      "max_vertex_displacement": 0.0
+    },
+    {
+      "mesh": "_realtime_2.obj",
+      "sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d",
+      "equals_initial_bytes": true,
+      "mean_vertex_displacement": 0.0,
+      "max_vertex_displacement": 0.0
+    },
+    {
+      "mesh": "_realtime_3.obj",
+      "sha256": "3369c5bdeb29617173ba7bd1aca4e154d54f5b73bf21af6c757a133a4cdde48d",
+      "equals_initial_bytes": true,
+      "mean_vertex_displacement": 0.0,
+      "max_vertex_displacement": 0.0
+    }
+  ],
+  "mechanism": "Both proposed geometry updates were rolled back. V4 therefore retained the frozen initial mesh, whereas baseline published two deformed meshes. Three replicates show that the resulting accuracy gap is systematic for this sequence."
+}

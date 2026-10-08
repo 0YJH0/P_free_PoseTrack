@@ -1,0 +1,40 @@
+{
+  "n_observations": 84,
+  "n_replicates_per_method": 2,
+  "add_mm": {
+    "method_effect_v4_minus_baseline": 0.31438476190476194,
+    "standard_error": 0.7896230863848781,
+    "normal_approx_ci95": [
+      -1.2332764874095992,
+      1.862046011219123
+    ],
+    "z": 0.39814535228966763,
+    "p_two_sided": 0.6905230455643028,
+    "variance_object": 23.80026969541656,
+    "variance_sequence_within_object": 175.65579697683296,
+    "variance_run_residual": 13.093596989591587,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 2.0270518979494856,
+      "v4": 0.12127184343112608
+    }
+  },
+  "auc": {
+    "method_effect_v4_minus_baseline": -0.06624761904762222,
+    "standard_error": 0.7686996129255227,
+    "normal_approx_ci95": [
+      -1.5728988603816467,
+      1.4404036222864023
+    ],
+    "z": -0.08618141330330133,
+    "p_two_sided": 0.9313222057646323,
+    "variance_object": 22.443652873563593,
+    "variance_sequence_within_object": 169.9415362885633,
+    "variance_run_residual": 12.408880993148804,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 2.0280260217199504,
+      "v4": 0.12010377037210972
+    }
+  }
+}

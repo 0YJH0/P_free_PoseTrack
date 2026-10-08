@@ -1,0 +1,15 @@
+{
+  "dataset": "MOPED",
+  "object": "black_drill",
+  "sequence": "evaluation/00",
+  "seed": 42,
+  "confidence_gate": true,
+  "confidence_threshold": 0.8,
+  "initial_geometry_sha256": "55f63cc3416bfd08159991379c82556fe356784c688c0acde4d9a25b4210c130",
+  "candidate_keyframes": 6,
+  "accepted_keyframes": 4,
+  "geometry_artifacts": 3,
+  "add_mm": 18.2342,
+  "add_auc": 81.7432,
+  "tracker_return_code": 0
+}

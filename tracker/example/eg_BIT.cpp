@@ -13,12 +13,34 @@
 #include "ar_utils/data_io/data_loader.h"
 
 #include <filesystem>
+#include <cmath>
 
 using namespace ar3dv;
 using namespace cv;
 using namespace std;
 
 using LSC = LocalStorageCommunicator;
+
+namespace
+{
+float RotationErrorDegrees(const cv::Matx44f &gt, const cv::Matx44f &pose)
+{
+	cv::Matx33f gt_r = gt.get_minor<3, 3>(0, 0);
+	cv::Matx33f pose_r = pose.get_minor<3, 3>(0, 0);
+	cv::Matx33f relative = pose_r.t() * gt_r;
+	float cosine = (relative(0, 0) + relative(1, 1) + relative(2, 2) - 1.0f) * 0.5f;
+	cosine = std::max(-1.0f, std::min(1.0f, cosine));
+	return std::acos(cosine) * 180.0f / static_cast<float>(M_PI);
+}
+
+float TranslationError(const cv::Matx44f &gt, const cv::Matx44f &pose)
+{
+	const float dx = gt(0, 3) - pose(0, 3);
+	const float dy = gt(1, 3) - pose(1, 3);
+	const float dz = gt(2, 3) - pose(2, 3);
+	return std::sqrt(dx * dx + dy * dy + dz * dz);
+}
+}
 
 SummerConfigs LoadSummerConfig(const std::string &yml)
 {
@@ -126,7 +148,8 @@ int main(int argc, char *argv[])
 		summerRoot = LoadSingleInfo<std::string>(summerYml, "root");
 		sc = LoadSummerConfig(summerYml);
 		gts = LoadPoses(sc.gts_file, 1, 0, '\t', 1.0f, kMat);
-		ips = LoadImages(summerRoot + sc.imgs_dir, "a_regular", 4);
+		std::string scene = LoadSingleInfo<std::string>(summerYml, "scene");
+		ips = LoadImages(summerRoot + sc.imgs_dir, scene, 4);
 		camParams = LoadCamera(camConfigYaml, 0);
 		scaled_model_path = sc.cmc_root + sc.scaled_model_path;
 		bbx = ComputeBoundingBox(LoadObjModel(sc.model_path));
@@ -320,6 +343,27 @@ int main(int argc, char *argv[])
 
 		VLOG(0) << "ADD Error in mm: " << ComADD(gts, poses, modelPointsInMM);
 		VLOG(0) << "ADD AUC Score in mm: " << ComAddAUC(gts, poses, modelPointsInMM, 100.0f, 1.0f);
+	}
+	else if (dataset == "rbot")
+	{
+		const size_t count = std::min(gts.size(), poses.size());
+		double rotation_sum = 0.0;
+		double translation_sum = 0.0;
+		size_t successes = 0;
+		for (size_t i = 0; i < count; ++i)
+		{
+			const float rotation_error = RotationErrorDegrees(gts[i], poses[i]);
+			const float translation_error = TranslationError(gts[i], poses[i]);
+			rotation_sum += rotation_error;
+			translation_sum += translation_error;
+			if (rotation_error <= 5.0f && translation_error <= 50.0f * poseScale)
+				++successes;
+		}
+		const double denominator = count == 0 ? 1.0 : static_cast<double>(count);
+		VLOG(0) << "RBOT evaluated frames: " << count;
+		VLOG(0) << "RBOT success rate 5deg5cm: " << successes / denominator;
+		VLOG(0) << "RBOT mean rotation error deg: " << rotation_sum / denominator;
+		VLOG(0) << "RBOT mean translation error: " << translation_sum / denominator;
 	}
 
 	VLOG(0) << ar3dv::Timing::Print();

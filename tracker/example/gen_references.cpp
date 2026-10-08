@@ -21,7 +21,7 @@ using LSC = LocalStorageCommunicator;
 SummerConfigs LoadSummerConfig(const std::string &yml)
 {
 	std::string root = LoadSingleInfo<string>(yml, "root");
-	std::string cmc_root = root + LoadSingleInfo<string>(yml, "cmcRoot");
+	std::string cmc_root = root + LoadSingleInfo<string>(yml, "cmc");
 	std::string gts_file = LoadSingleInfo<string>(yml, "gt");
 	std::string imgs_dir = LoadSingleInfo<string>(yml, "frames");
 	string model_name = LoadSingleInfo<string>(yml, "modelName");
@@ -88,7 +88,8 @@ int main(int argc, char *argv[])
 		sc = LoadSummerConfig(summerYml);
 
 		gts = LoadPoses(sc.gts_file, 1, 0, '\t', 1.0f, kMat);
-		ips = LoadImages(sc.cmc_root + sc.imgs_dir, "a_regular", 4);
+		std::string scene = LoadSingleInfo<std::string>(summerYml, "scene");
+		ips = LoadImages(summerRoot + sc.imgs_dir, scene, 4);
 
 		camParams = LoadCamera(cameraYml, 0);
 

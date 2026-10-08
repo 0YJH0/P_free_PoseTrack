@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*.so
+
+checkpoints/
+dataset/
+tracker/bin/
+
+loss_iou2.txt
+model.obj
+model.mtl
+temp_file.yml
+
+results/*/models/
+results/*/tracking/
+
+# Large generated experiment artifacts. Keep compact analysis JSON/CSV,
+# protocols, configs, and status manifests versioned for reproducibility.
+results/paper_moped/raw/
+results/paper_rbot/raw/
+results/paper_rbot/frozen_references/
+results/paper_rbot/reference_logs/
+results/**/*.log
+results/*.log
+
+# Publication previews are versioned as SVG/PDF/PNG; TIFF is regenerated.
+reports/**/*.tiff
+
+# Download/runtime debris.
+wget-log
+*.swap

@@ -1,0 +1,100 @@
+{
+  "n_observations": 126,
+  "n_replicates_per_method": 3,
+  "add_mm": {
+    "method_effect_v4_minus_baseline": -0.18117142857142965,
+    "standard_error": 0.6643930310080582,
+    "normal_approx_ci95": [
+      -1.4833817693472238,
+      1.1210389122043645
+    ],
+    "z": -0.27268712962949826,
+    "p_two_sided": 0.7850937289705361,
+    "variance_object": 25.242599685996247,
+    "variance_sequence_within_object": 162.90211902094669,
+    "variance_run_residual": 13.904670139040336,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 2.1009165899294646,
+      "v4": 0.5517904979327323
+    },
+    "stability": {
+      "pooled_within_sequence_variance_ratio_baseline_over_v4": 6.0308149611284625,
+      "variance_ratio_hierarchical_bootstrap_ci95": [
+        0.1457656445986803,
+        9171.87981102533
+      ],
+      "probability_variance_ratio_gt_1": 0.8145,
+      "median_within_sequence_sd": {
+        "baseline": 0.27543117712658094,
+        "v4": 0.06402845721500157
+      },
+      "sequences_lower_sd_v4": 16,
+      "sequences_higher_sd_v4": 2,
+      "sequences_sd_tied": 3,
+      "paired_wilcoxon_baseline_sd_greater_p": 0.00384521484375,
+      "paired_sign_test_baseline_sd_greater_p": 0.0006561279296875,
+      "run_range": {
+        "baseline": {
+          "mean_range": 3.7757557142857143,
+          "p95_range": 14.68523,
+          "max_range": 35.5827
+        },
+        "v4": {
+          "mean_range": 0.9769780952380952,
+          "p95_range": 1.6224999999999987,
+          "max_range": 16.207700000000003
+        }
+      }
+    },
+    "equivalence_margin_mm": 2.0,
+    "equivalent_within_margin": true
+  },
+  "auc": {
+    "method_effect_v4_minus_baseline": 0.3915492063492154,
+    "standard_error": 0.6372952781553861,
+    "normal_approx_ci95": [
+      -0.8575495388353414,
+      1.6406479515337722
+    ],
+    "z": 0.6143921346515099,
+    "p_two_sided": 0.5389562320163519,
+    "variance_object": 24.11760407283198,
+    "variance_sequence_within_object": 158.87758667908895,
+    "variance_run_residual": 12.793576054113256,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 2.0991927309034906,
+      "v4": 0.48394290967223375
+    },
+    "stability": {
+      "pooled_within_sequence_variance_ratio_baseline_over_v4": 8.451192101754163,
+      "variance_ratio_hierarchical_bootstrap_ci95": [
+        0.2092987338944059,
+        10900.515380029845
+      ],
+      "probability_variance_ratio_gt_1": 0.8629,
+      "median_within_sequence_sd": {
+        "baseline": 0.25608280561828495,
+        "v4": 0.07515293296560478
+      },
+      "sequences_lower_sd_v4": 14,
+      "sequences_higher_sd_v4": 2,
+      "sequences_sd_tied": 5,
+      "paired_wilcoxon_baseline_sd_greater_p": 0.0065460205078125,
+      "paired_sign_test_baseline_sd_greater_p": 0.0020904541015625,
+      "run_range": {
+        "baseline": {
+          "mean_range": 3.7723095238095246,
+          "p95_range": 14.657899999999998,
+          "max_range": 35.531000000000006
+        },
+        "v4": {
+          "mean_range": 0.8605761904761907,
+          "p95_range": 1.625,
+          "max_range": 13.644800000000004
+        }
+      }
+    }
+  }
+}

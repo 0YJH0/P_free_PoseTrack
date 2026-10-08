@@ -1,0 +1,84 @@
+%YAML:1.0
+
+dataset: "moped"
+root: "dataset/moped/orange_drill/evaluation/00/"
+refRoot: "dataset/moped/orange_drill/reference/00/"
+cmc: "cmc/"
+frames: "color/"
+mask: "mask/"
+angle: 3.0
+width: 640
+height: 480
+gt: "scene/trajectory.log"
+modelName: "paper-gradient_rollback_r02-orange_drill-00"
+modelPath: "dataset/moped/orange_drill/reference/integrated_raw.obj"
+scaledModelPath: "cmc/deformed_model_rescaled/model.obj"
+scene: ""
+
+K: "dataset/moped/orange_drill/evaluation/00/intrinsics.json"
+
+reference_imgs_nums: 1
+estimated_imgs_nums: 3
+max_model_deformed_nums: 3
+
+# Differentiable Rendering Parameters
+renderer_img_size: 256
+iteration_nums_in_each_deform: 200
+batch_size: 6
+viewing_angle: 30
+
+visualize: False
+
+template_mesh: "sphere_2600_unit.obj"
+initial_geometry_path: "results/paper_moped/initial_geometry/orange_drill/00.obj"
+initial_geometry_export_path: ""
+stop_after_initial_geometry: False
+output_dir: "dataset/moped/orange_drill/evaluation/00/cmc/deformed_model"
+
+save_obj_path: ""
+save_index: 0
+tracker: "tracker/bin/eg_BIT"
+
+communication: 
+    root: "dataset/moped/orange_drill/evaluation/00/cmc/"
+
+sam: 
+    checkpoint: "sam_vit_b_01ec64.pth"
+    model: "vit_b"
+    device: "cuda"
+
+confidence: 
+    use_confidence_gate: True
+    confidence_threshold: 0.650000
+    mask_binary_threshold: 0.5
+    mode: gradient_rollback
+    base_threshold: 0.650000
+    adaptive_threshold: True
+    adaptive_k: 1.5
+    threshold_min: 0.45
+    threshold_max: 0.85
+    soft_temperature: 0.08
+    min_weight: 0.05
+    history_size: 32
+    fusion_weights: [0.40, 0.20, 0.20, 0.20]
+    pose_translation_scale: 0.03
+    pose_rotation_scale_deg: 10.0
+    temporal_scale: 0.15
+    min_visible_fraction: 0.02
+    gradient_alpha: 0.35
+    gradient_history_momentum: 0.8
+    gradient_min_weight: 0.75
+    rollback_tolerance: 0.002
+    max_vertex_step_ratio: 0.15
+    log_csv: "results/paper_moped/raw/gradient_rollback_r02/orange_drill/00/confidence.csv"
+
+show: 
+    mask: False
+    bbx: False
+    points: False
+
+save: 
+    dir: ""
+    mask: False
+    bbx: False
+    points: False

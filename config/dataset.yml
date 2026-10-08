@@ -1,2 +1,2 @@
-moped_dir: "/home/lab/workspace/cxx/BIT_Private/data/moped"
-rbot_dir: "/home/lab/workspace/cxx/BIT_Private/data/RBOT_dataset"
+moped_dir: "dataset/moped"
+rbot_dir: "dataset/RBOT_dataset"

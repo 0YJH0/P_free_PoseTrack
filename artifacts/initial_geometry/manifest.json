@@ -1,0 +1,7 @@
+{
+  "artifact": "black_drill_eval00_seed42.obj",
+  "dataset": "MOPED/black_drill/evaluation/00",
+  "seed": 42,
+  "sha256": "55f63cc3416bfd08159991379c82556fe356784c688c0acde4d9a25b4210c130",
+  "source": "first geometry update from the confidence-pipeline validation run"
+}

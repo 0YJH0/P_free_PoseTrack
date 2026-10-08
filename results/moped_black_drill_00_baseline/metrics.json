@@ -1,0 +1,17 @@
+{
+  "status": "completed_single_run",
+  "dataset": "MOPED",
+  "object": "black_drill",
+  "sequence": "evaluation/00",
+  "config": "config.yml",
+  "random_seed": 42,
+  "use_confidence_gate": false,
+  "geometry_updates": 2,
+  "logged_online_candidates": 3,
+  "pending_candidates_at_sequence_end": 5,
+  "runtime_seconds_approx_from_log_timestamps": 50.5,
+  "add_m": 0.0159126,
+  "add_mm": 15.9126,
+  "add_auc_reported_by_official_code": 84.0946,
+  "notes": "Actual output of one completed run; not directly comparable with the confidence run because differentiable-rendering randomness produced a different keyframe/update trajectory."
+}

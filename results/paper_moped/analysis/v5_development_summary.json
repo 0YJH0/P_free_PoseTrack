@@ -1,0 +1,107 @@
+{
+  "scope": "frozen-parameter exploratory development cohort; not independent confirmation",
+  "n_objects": 4,
+  "n_sequences": 21,
+  "all_initial_geometry_hashes_match": true,
+  "mean_add_mm": {
+    "baseline": 22.450732857142857,
+    "v4": 23.095300952380953,
+    "v5": 21.38408761904762
+  },
+  "v5_vs_baseline_add": {
+    "n_sequences": 21,
+    "mean_sequence_delta": -1.0666452380952383,
+    "median_sequence_delta": -0.26390000000000047,
+    "macro_object_delta": -1.036664375,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -3.748527651041667,
+      2.607681078125003
+    ],
+    "wilcoxon_two_sided_statistic": 48.0,
+    "wilcoxon_two_sided_p": 0.1083831787109375,
+    "sign_test_two_sided_p": 0.237884521484375,
+    "favorable": 12,
+    "unfavorable": 6,
+    "ties": 3
+  },
+  "v5_vs_v4_add": {
+    "n_sequences": 21,
+    "mean_sequence_delta": -1.711213333333334,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": -1.6969800000000004,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -4.3745928958333336,
+      0.24360666666666703
+    ],
+    "wilcoxon_two_sided_statistic": 22.0,
+    "wilcoxon_two_sided_p": 0.0579833984375,
+    "sign_test_two_sided_p": 0.1795654296875,
+    "favorable": 10,
+    "unfavorable": 4,
+    "ties": 7
+  },
+  "v5_vs_baseline_auc": {
+    "n_sequences": 21,
+    "mean_sequence_delta": 1.2050238095238104,
+    "median_sequence_delta": 0.26310000000000855,
+    "macro_object_delta": 1.158628333333334,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -2.5183044062500013,
+      3.9186708333333353
+    ],
+    "wilcoxon_two_sided_statistic": 43.0,
+    "wilcoxon_two_sided_p": 0.06653594970703125,
+    "sign_test_two_sided_p": 0.237884521484375,
+    "favorable": 12,
+    "unfavorable": 6,
+    "ties": 3
+  },
+  "v5_vs_v4_auc": {
+    "n_sequences": 21,
+    "mean_sequence_delta": 1.6013809523809517,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": 1.6033279166666659,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -0.2297939166666681,
+      4.013060427083332
+    ],
+    "wilcoxon_two_sided_statistic": 17.0,
+    "wilcoxon_two_sided_p": 0.0478515625,
+    "sign_test_two_sided_p": 0.09228515625,
+    "favorable": 10,
+    "unfavorable": 3,
+    "ties": 8
+  },
+  "runtime": {
+    "baseline_mean_seconds": 70.2717266309829,
+    "v4_mean_seconds": 70.86413181395758,
+    "v5_mean_seconds": 85.40093948727562,
+    "v5_over_baseline_ratio": 1.215295874765403,
+    "v5_over_v4_ratio": 1.2051363263926256
+  },
+  "v5_updates": {
+    "accepted": 9,
+    "rejected": 17
+  },
+  "toy_plane_03": {
+    "object": "toy_plane",
+    "sequence": "03",
+    "baseline_add_mm": 12.9501,
+    "v4_add_mm": 30.9997,
+    "v5_add_mm": 30.9997,
+    "v5_minus_baseline_add_mm": 18.049599999999998,
+    "v5_minus_v4_add_mm": 0.0,
+    "baseline_auc": 86.9779,
+    "v4_auc": 68.9956,
+    "v5_auc": 68.9956,
+    "v5_minus_baseline_auc": -17.98230000000001,
+    "v5_minus_v4_auc": 0.0,
+    "baseline_runtime_seconds": 92.4638454914093,
+    "v4_runtime_seconds": 89.14090514183044,
+    "v5_runtime_seconds": 119.44775676727295,
+    "v5_updates_accepted": 0,
+    "v5_updates_rejected": 2,
+    "all_initial_geometry_hashes_match": true
+  },
+  "interpretation": "V5 improves development point estimates but remains non-significant. toy_plane/03 is unchanged from V4 because both V5 proposals exceeded the frozen 0.15 vertex-step safety bound and were rolled back."
+}

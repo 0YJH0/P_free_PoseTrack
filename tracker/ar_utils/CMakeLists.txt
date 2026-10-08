@@ -19,6 +19,7 @@ FIND_PACKAGE(ASSIMP REQUIRED)
 FIND_PACKAGE(Glog REQUIRED)
 FIND_PACKAGE(Gflags REQUIRED)
 FIND_PACKAGE(Sophus REQUIRED)
+FIND_PACKAGE(fmt REQUIRED)
 find_package(nlohmann_json REQUIRED)
 
 INCLUDE_DIRECTORIES(
@@ -36,6 +37,7 @@ set(UTILS_DEP_LIB
         Qt5::Widgets
         Qt5::OpenGL
 		Sophus::Sophus
+		fmt::fmt
         ${OpenCV_LIBS}
         ${OPENGL_LIBRARIES}
         ${ASSIMP_LIBRARIES}

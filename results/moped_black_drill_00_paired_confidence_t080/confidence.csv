@@ -1,0 +1,7 @@
+frame_id,mask_iou,is_candidate_keyframe,is_accepted_keyframe,geometry_update
+0,0.8488163948059082,True,True,True
+15,0.8243921995162964,True,True,True
+41,0.7238228917121887,True,False,False
+46,0.8211684226989746,True,True,True
+57,0.8140296339988708,True,True,True
+71,0.7532523274421692,True,False,False

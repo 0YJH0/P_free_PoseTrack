@@ -1,0 +1,108 @@
+{
+  "cohort": "confirmation",
+  "n_objects": 6,
+  "n_sequences": 33,
+  "n_observations": 198,
+  "n_replicates_per_method": 3,
+  "all_initial_geometry_hashes_match": true,
+  "add_mm": {
+    "method_effect_v4_minus_baseline": -1.8075029292929319,
+    "standard_error": 1.6932451633578889,
+    "normal_approx_ci95": [
+      -5.1262634494743935,
+      1.5112575908885302
+    ],
+    "z": -1.0674785721569446,
+    "p_two_sided": 0.28575578465852136,
+    "variance_object": 4.510569688694696,
+    "variance_sequence_within_object": 589.4871640899913,
+    "variance_run_residual": 141.92041957012665,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 4.213119232167463,
+      "v4": 2.9752500880955237
+    },
+    "stability": {
+      "pooled_within_sequence_variance_ratio_baseline_over_v4": 2.0737464282875435,
+      "variance_ratio_hierarchical_bootstrap_ci95": [
+        0.2362233750568028,
+        17.24088969812406
+      ],
+      "probability_variance_ratio_gt_1": 0.745,
+      "median_within_sequence_sd": {
+        "baseline": 0.17767307993428216,
+        "v4": 2.175583928816829e-15
+      },
+      "sequences_lower_sd_v4": 13,
+      "sequences_higher_sd_v4": 11,
+      "sequences_sd_tied": 9,
+      "paired_wilcoxon_baseline_sd_greater_p": 0.352378249168396,
+      "paired_sign_test_baseline_sd_greater_p": 0.4194098711013794,
+      "run_range": {
+        "baseline": {
+          "mean_range": 7.463589393939394,
+          "p95_range": 40.14554799999996,
+          "max_range": 92.45586
+        },
+        "v4": {
+          "mean_range": 5.361077272727273,
+          "p95_range": 23.31781999999999,
+          "max_range": 69.06826
+        }
+      }
+    },
+    "equivalence_margin_mm": 2.0,
+    "equivalent_within_margin": false
+  },
+  "auc": {
+    "method_effect_v4_minus_baseline": 2.4015795959595954,
+    "standard_error": 1.1996024904080775,
+    "normal_approx_ci95": [
+      0.0503587147597635,
+      4.752800477159427
+    ],
+    "z": 2.001979501678621,
+    "p_two_sided": 0.045286936179338176,
+    "variance_object": 21.918764998961915,
+    "variance_sequence_within_object": 337.48539644842697,
+    "variance_run_residual": 71.23278368216647,
+    "optimizer_success": true,
+    "mean_within_sequence_sd": {
+      "baseline": 3.5107493837619983,
+      "v4": 2.565353908792222
+    },
+    "stability": {
+      "pooled_within_sequence_variance_ratio_baseline_over_v4": 1.5664052877113137,
+      "variance_ratio_hierarchical_bootstrap_ci95": [
+        0.16963148546823834,
+        17.338459402357046
+      ],
+      "probability_variance_ratio_gt_1": 0.727,
+      "median_within_sequence_sd": {
+        "baseline": 0.09798729509482666,
+        "v4": 1.7404671430534633e-14
+      },
+      "sequences_lower_sd_v4": 12,
+      "sequences_higher_sd_v4": 11,
+      "sequences_sd_tied": 10,
+      "paired_wilcoxon_baseline_sd_greater_p": 0.4231158494949341,
+      "paired_sign_test_baseline_sd_greater_p": 0.5,
+      "run_range": {
+        "baseline": {
+          "mean_range": 6.166684848484849,
+          "p95_range": 40.10869999999997,
+          "max_range": 63.53430000000001
+        },
+        "v4": {
+          "mean_range": 4.563815151515151,
+          "p95_range": 18.56431999999999,
+          "max_range": 66.95769999999999
+        }
+      }
+    }
+  },
+  "holm_adjusted_p_across_add_and_auc": {
+    "auc": 0.09057387235867635,
+    "add_mm": 0.28575578465852136
+  }
+}

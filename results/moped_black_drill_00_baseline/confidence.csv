@@ -1,0 +1,4 @@
+frame_id,mask_iou,is_candidate_keyframe,is_accepted_keyframe,geometry_update
+0,nan,True,True,True
+18,nan,True,True,True
+34,nan,True,True,True

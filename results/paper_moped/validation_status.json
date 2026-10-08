@@ -1,0 +1,9 @@
+{
+  "phase": "validation",
+  "failures": [
+    "gate_t070/black_drill/00",
+    "gate_t080/black_drill/00",
+    "gate_t085/black_drill/00"
+  ],
+  "total_failures": 3
+}

@@ -1,0 +1,36 @@
+{
+  "selection_split": "sequence 00 from each of 4 analysis objects",
+  "primary_selection_metric": "macro object mean paired ADD delta (lower is better)",
+  "tie_breaker": "macro object mean paired AUC delta (higher is better)",
+  "chosen_arm": "gate_t080",
+  "candidates": [
+    {
+      "arm": "gate_t080",
+      "n": 4,
+      "macro_delta_add_mm": -2.589467499999999,
+      "macro_delta_auc": 2.5736999999999988,
+      "all_initial_geometry_hashes_match": true
+    },
+    {
+      "arm": "gate_t085",
+      "n": 4,
+      "macro_delta_add_mm": -1.5331499999999991,
+      "macro_delta_auc": 1.5388750000000027,
+      "all_initial_geometry_hashes_match": true
+    },
+    {
+      "arm": "gate_t070",
+      "n": 4,
+      "macro_delta_add_mm": 0.29554999999999954,
+      "macro_delta_auc": -0.29007500000000164,
+      "all_initial_geometry_hashes_match": true
+    },
+    {
+      "arm": "gate_t075",
+      "n": 4,
+      "macro_delta_add_mm": 0.47537500000000144,
+      "macro_delta_auc": -0.4600500000000025,
+      "all_initial_geometry_hashes_match": true
+    }
+  ]
+}

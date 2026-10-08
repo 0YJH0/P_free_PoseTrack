@@ -7,7 +7,7 @@ import copy
 import cv2
 from utils import pjoin
 class DataGroups:
-    def __init__(self, rgbs=None, probs=None, masks=None, Ts=None, Ks=None, origin_rois=None, target_rois=None, target_sizes=None):
+    def __init__(self, rgbs=None, probs=None, masks=None, Ts=None, Ks=None, origin_rois=None, target_rois=None, target_sizes=None, frame_ids=None):
         self.rgbs_ = rgbs if rgbs is not None else []
         self.probs_ = probs if probs is not None else []
         self.masks_ = masks if masks is not None else []
@@ -16,6 +16,7 @@ class DataGroups:
         self.origin_rois_ = origin_rois if origin_rois is not None else []
         self.target_rois_ = target_rois if target_rois is not None else []
         self.target_sizes_ = target_sizes if target_sizes is not None else []
+        self.frame_ids_ = frame_ids if frame_ids is not None else []
         
     def add(self, other):
         for rgb in other.rgbs_:
@@ -29,6 +30,7 @@ class DataGroups:
         self.origin_rois_ = np.vstack((self.origin_rois_, other.origin_rois_))
         self.target_rois_ = np.vstack((self.target_rois_, other.target_rois_))
         self.target_sizes_ = np.vstack((self.target_sizes_, other.target_sizes_))
+        self.frame_ids_.extend(other.frame_ids_)
 
     def print_info(self, title = "") -> None:
         print(title)
@@ -123,6 +125,7 @@ class LocalStorageCommunication:
 		self.base_data_status_ = True
 		self.max_count_ = max_count
 		self.curr_count_ = 0
+		self.parsed_count_ = 0
         
 		if from_sphere == True:
 			self.max_count_ = 1
@@ -169,7 +172,7 @@ class LocalStorageCommunication:
 		self.target_size_files_ += new_target_size_files
 
 		self.curr_count_ = len(self.K_files_)
-		return (self.curr_count_ >= self.max_count_)
+		return (self.curr_count_ - self.parsed_count_ >= self.max_count_)
 
 	def set_status(self, status):
 		self.status_ = status
@@ -188,26 +191,29 @@ class LocalStorageCommunication:
 		target_rois = []
 		target_sizes = []
 
-		# select the latest max_count_ data
-		begin = self.curr_count_ - self.max_count_
+		# Consume each communication file exactly once. Using the total file count
+		# here causes the previous batch to be processed repeatedly while C++ is
+		# still producing the next set of keyframes.
+		begin = self.parsed_count_
+		end = begin + self.max_count_
 
 		# RGB
-		newest_rgb_files = self.rgb_files_[begin:]
+		newest_rgb_files = self.rgb_files_[begin:end]
 		for img_file in newest_rgb_files:
 			imgs.append(cv2.imread(self.rgb_root_ + "/" + img_file))
 
 		# prob
-		newest_prob_files = self.prob_files_[begin:]
+		newest_prob_files = self.prob_files_[begin:end]
 		for prob_file in newest_prob_files:
 			probs.append(cv2.imread(self.prob_root_ + "/" + prob_file, cv2.IMREAD_GRAYSCALE))
 
 		# mask
-		newest_mask_files = self.mask_files_[begin:]
+		newest_mask_files = self.mask_files_[begin:end]
 		for mask_file in newest_mask_files:
 			masks.append(cv2.imread(self.mask_root_ + "/" + mask_file, cv2.IMREAD_GRAYSCALE))
 
 		# parsing pose 
-		newest_pose_files = self.pose_files_[begin:]
+		newest_pose_files = self.pose_files_[begin:end]
 		for pose_file in newest_pose_files:
 			with open(self.pose_root_ + "/" + pose_file, 'r') as f:
 				content = f.readlines()
@@ -223,7 +229,8 @@ class LocalStorageCommunication:
 		poses = np.stack(poses, axis = 0)
 
 		# parsing K
-		newest_K_files = self.K_files_[begin:]
+		newest_K_files = self.K_files_[begin:end]
+		frame_ids = [int(os.path.splitext(name)[0]) for name in newest_K_files]
 		for K_file in newest_K_files:
 			with open(self.K_root_ + "/" + K_file, 'r') as f:
 				content = f.readlines()
@@ -234,7 +241,7 @@ class LocalStorageCommunication:
 		Ks = np.stack(Ks, axis = 0)
 
 		# parsing origin roi
-		newest_origin_roi_files = self.origin_roi_files_[begin:]
+		newest_origin_roi_files = self.origin_roi_files_[begin:end]
 		for origin_roi_file in newest_origin_roi_files:
 			with open(self.origin_roi_root_ + "/" + origin_roi_file, 'r') as f:
 				content = f.readlines()
@@ -245,7 +252,7 @@ class LocalStorageCommunication:
 		origin_rois = np.stack(origin_rois, axis = 0)
 
 		# parsing target roi
-		newest_target_roi_files = self.target_roi_files_[begin:]
+		newest_target_roi_files = self.target_roi_files_[begin:end]
 		for target_roi_file in newest_target_roi_files:
 			with open(self.target_roi_root_ + "/" + target_roi_file, 'r') as f:
 				content = f.readlines()
@@ -256,7 +263,7 @@ class LocalStorageCommunication:
 		target_rois = np.stack(target_rois, axis = 0)
 
      	# parsing target size
-		newest_target_size_files = self.target_size_files_[begin:]
+		newest_target_size_files = self.target_size_files_[begin:end]
 		for target_size_file in newest_target_size_files:
 			with open(self.target_size_root_ + "/" + target_size_file, 'r') as f:
 				content = f.readlines()
@@ -266,7 +273,38 @@ class LocalStorageCommunication:
 					target_sizes.append(line_data)
 		target_sizes = np.stack(target_sizes, axis = 0)
 
-		return DataGroups(rgbs=imgs, probs=probs, masks=masks, Ts=poses, Ks=Ks, origin_rois=origin_rois, target_rois=target_rois, target_sizes=target_sizes)
+		result = DataGroups(rgbs=imgs, probs=probs, masks=masks, Ts=poses, Ks=Ks, origin_rois=origin_rois, target_rois=target_rois, target_sizes=target_sizes, frame_ids=frame_ids)
+
+		# The communication folders are a transient queue. Removing a consumed
+		# batch is necessary because an online candidate can have the same source
+		# frame id (and therefore filename) as the pseudo-reference frame.
+		consumed_groups = (
+			(self.rgb_root_, newest_rgb_files),
+			(self.prob_root_, newest_prob_files),
+			(self.mask_root_, newest_mask_files),
+			(self.pose_root_, newest_pose_files),
+			(self.K_root_, newest_K_files),
+			(self.origin_roi_root_, newest_origin_roi_files),
+			(self.target_roi_root_, newest_target_roi_files),
+			(self.target_size_root_, newest_target_size_files),
+		)
+		for root, filenames in consumed_groups:
+			for filename in filenames:
+				path = os.path.join(root, filename)
+				if os.path.exists(path):
+					os.remove(path)
+
+		self.rgb_files_ = self.rgb_files_[end:]
+		self.prob_files_ = self.prob_files_[end:]
+		self.mask_files_ = self.mask_files_[end:]
+		self.pose_files_ = self.pose_files_[end:]
+		self.K_files_ = self.K_files_[end:]
+		self.origin_roi_files_ = self.origin_roi_files_[end:]
+		self.target_roi_files_ = self.target_roi_files_[end:]
+		self.target_size_files_ = self.target_size_files_[end:]
+		self.parsed_count_ = 0
+		self.curr_count_ = len(self.K_files_)
+		return result
 
 
 	def SetBaseDatas(self, imgs, probs, masks, poses, Ks, origin_rois, target_rois, target_sizes):
@@ -317,4 +355,4 @@ class LocalStorageCommunication:
 		return self.max_count_
 	
 	def set_max_count(self, max_count):
-		self.max_count_ = max_count	
+		self.max_count_ = max_count

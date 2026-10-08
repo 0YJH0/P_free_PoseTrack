@@ -1,0 +1,19 @@
+{
+  "status": "completed_single_run",
+  "dataset": "MOPED",
+  "object": "black_drill",
+  "sequence": "evaluation/00",
+  "config": "config.yml",
+  "random_seed": 42,
+  "use_confidence_gate": true,
+  "confidence_threshold": 0.5,
+  "geometry_updates": 3,
+  "online_candidates": 6,
+  "accepted_candidates": 6,
+  "rejected_candidates": 0,
+  "runtime_seconds_approx_from_log_timestamps": 74.6,
+  "add_m": 0.0205422,
+  "add_mm": 20.5422,
+  "add_auc_reported_by_official_code": 79.4459,
+  "notes": "Actual output of one completed run; not a paper result or aggregate. All candidates passed threshold 0.5."
+}

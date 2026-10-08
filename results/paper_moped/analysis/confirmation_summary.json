@@ -1,0 +1,103 @@
+{
+  "arm": "gradient_rollback",
+  "scope": "preregistered-style independent confirmation on six objects unused in development",
+  "n_objects": 6,
+  "n_sequences": 33,
+  "all_initial_geometry_hashes_match": true,
+  "baseline_mean_add_mm": 32.01878333333333,
+  "method_mean_add_mm": 29.51210787878788,
+  "baseline_mean_auc": 71.07559818181818,
+  "method_mean_auc": 73.5292909090909,
+  "add_mm": {
+    "n_sequences": 33,
+    "mean_sequence_delta": -2.506675454545454,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": -2.490904722222222,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -7.955547472222222,
+      3.1187546388888907
+    ],
+    "wilcoxon_two_sided_statistic": 68.0,
+    "wilcoxon_two_sided_p": 0.032669782638549805,
+    "sign_test_two_sided_p": 0.21003961563110352,
+    "favorable": 15,
+    "unfavorable": 8,
+    "ties": 10
+  },
+  "auc": {
+    "n_sequences": 33,
+    "mean_sequence_delta": 2.453692727272727,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": 2.4002255555555556,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -0.7062240833333329,
+      5.116413486111112
+    ],
+    "wilcoxon_two_sided_statistic": 40.0,
+    "wilcoxon_two_sided_p": 0.0071010589599609375,
+    "sign_test_two_sided_p": 0.0783538818359375,
+    "favorable": 15,
+    "unfavorable": 6,
+    "ties": 12
+  },
+  "tail_risk": {
+    "largest_improvement_mm": 43.2392,
+    "largest_degradation_mm": 49.2376,
+    "degradations_over_2mm": 3,
+    "degradations_over_10mm": 2
+  },
+  "equivalence_margin_mm": 2.0,
+  "macro_add_equivalent_at_95pct": false,
+  "object_summaries": [
+    {
+      "object": "cheezit",
+      "n_sequences": 6,
+      "baseline_mean_add_mm": 29.23559333333333,
+      "method_mean_add_mm": 33.240615,
+      "delta_add_mm": 4.005021666666666,
+      "delta_auc": 4.16545
+    },
+    {
+      "object": "duster",
+      "n_sequences": 5,
+      "baseline_mean_add_mm": 24.327555999999998,
+      "method_mean_add_mm": 24.227436,
+      "delta_add_mm": -0.10011999999999972,
+      "delta_auc": 0.1
+    },
+    {
+      "object": "graphics_card",
+      "n_sequences": 6,
+      "baseline_mean_add_mm": 27.244968333333333,
+      "method_mean_add_mm": 22.951658333333338,
+      "delta_add_mm": -4.293309999999999,
+      "delta_auc": 4.01635
+    },
+    {
+      "object": "orange_drill",
+      "n_sequences": 5,
+      "baseline_mean_add_mm": 18.640520000000002,
+      "method_mean_add_mm": 16.06082,
+      "delta_add_mm": -2.5797000000000003,
+      "delta_auc": 2.5983599999999996
+    },
+    {
+      "object": "pouch",
+      "n_sequences": 5,
+      "baseline_mean_add_mm": 39.267248,
+      "method_mean_add_mm": 34.994788,
+      "delta_add_mm": -4.27246,
+      "delta_auc": 2.7379000000000007
+    },
+    {
+      "object": "remote",
+      "n_sequences": 6,
+      "baseline_mean_add_mm": 51.09331,
+      "method_mean_add_mm": 43.38845,
+      "delta_add_mm": -7.704860000000001,
+      "delta_auc": 0.783293333333333
+    }
+  ],
+  "inference_note": "The object-cluster hierarchical bootstrap is primary. Sequence-level Wilcoxon and sign tests are sensitivity analyses because sequences within an object are not independent.",
+  "data_use_note": "No threshold, architecture, or exclusion was changed after viewing this cohort."
+}

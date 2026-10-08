@@ -80,6 +80,7 @@ def GenRbotYmls4Summer(scene, models, rbotRoot, saveRoot):
             yml_file.write(f"iteration_nums_in_each_deform: 200\n")
             yml_file.write(f"batch_size: 6\n")
             yml_file.write(f"viewing_angle: 30\n\n")
+            yml_file.write("visualize: False\n\n")
             yml_file.write(f"template_mesh: \"sphere_2600_unit.obj\"\n")
             yml_file.write(f"output_dir: \"{rbotRoot}/{model}/cmc/deformed_model\"\n\n")
             yml_file.write(f"save_obj_path: \"\"\n")
@@ -91,6 +92,11 @@ def GenRbotYmls4Summer(scene, models, rbotRoot, saveRoot):
             yml_file.write("    checkpoint: \"sam_vit_b_01ec64.pth\"\n")
             yml_file.write("    model: \"vit_b\"\n")
             yml_file.write("    device: \"cuda\"\n\n")
+            yml_file.write("confidence: \n")
+            yml_file.write("    use_confidence_gate: False\n")
+            yml_file.write("    confidence_threshold: 0.5\n")
+            yml_file.write("    mask_binary_threshold: 0.5\n")
+            yml_file.write(f"    log_csv: \"{rbotRoot}/{model}/cmc/deformed_model/confidence.csv\"\n\n")
             yml_file.write(f"show: \n")
             yml_file.write("    mask: False\n")
             yml_file.write("    bbx: False\n")
@@ -101,7 +107,7 @@ def GenRbotYmls4Summer(scene, models, rbotRoot, saveRoot):
             yml_file.write("    bbx: False\n")
             yml_file.write("    points: False\n")    
            
-            
+
 def GenMopedConfigs(moped_root, generated_ymls_root):
     models = ["black_drill", "duplo_dude", "graphics_card", "orange_drill", "remote", \
              "toy_plane", "cheezit", "duster", "pouch", "rinse_aid", "vim_mug"]
@@ -157,6 +163,7 @@ def GenMopedConfigs(moped_root, generated_ymls_root):
                     yml_file.write(f"iteration_nums_in_each_deform: 200\n")
                     yml_file.write(f"batch_size: 6\n")
                     yml_file.write(f"viewing_angle: 30\n\n")
+                    yml_file.write("visualize: False\n\n")
                     yml_file.write(f"template_mesh: \"sphere_2600_unit.obj\"\n")
                     yml_file.write(f"output_dir: \"{root}{dir}/cmc/deformed_model\"\n\n")
                     yml_file.write(f"save_obj_path: \"\"\n")
@@ -168,6 +175,11 @@ def GenMopedConfigs(moped_root, generated_ymls_root):
                     yml_file.write("    checkpoint: \"sam_vit_b_01ec64.pth\"\n")
                     yml_file.write("    model: \"vit_b\"\n")
                     yml_file.write("    device: \"cuda\"\n\n")
+                    yml_file.write("confidence: \n")
+                    yml_file.write("    use_confidence_gate: False\n")
+                    yml_file.write("    confidence_threshold: 0.5\n")
+                    yml_file.write("    mask_binary_threshold: 0.5\n")
+                    yml_file.write(f"    log_csv: \"{root}{dir}/cmc/deformed_model/confidence.csv\"\n\n")
                     yml_file.write(f"show: \n")
                     yml_file.write("    mask: False\n")
                     yml_file.write("    bbx: False\n")
@@ -196,8 +208,9 @@ if __name__ == '__main__':
                     "cube", "driller", "duck", "eggbox", "glue", "iron", "koalacandy", "lamp", "phone", "squirrel"]
             rbotRoot = dataset_config['rbot_dir']
             r4s_saveRoot = f"{parent_dir}/rbot/"
-            scene = "a_regular"
-            GenRbotYmls4Summer(scene, models, rbotRoot, r4s_saveRoot)
+            scenes = ["a_regular", "b_dynamiclight", "c_noisy", "d_occlusion"]
+            for scene in scenes:
+                GenRbotYmls4Summer(scene, models, rbotRoot, r4s_saveRoot)
             
             # RBOT Dataset for test other trackers
             # saveRoot = f"{parent_dir}/rbot_3d3r6/"
@@ -211,4 +224,3 @@ if __name__ == '__main__':
             moped_root_path = dataset_config['moped_dir']
             moped_generated_ymls_path = "moped/"
             GenMopedConfigs(moped_root = moped_root_path, generated_ymls_root = moped_generated_ymls_path)
-            

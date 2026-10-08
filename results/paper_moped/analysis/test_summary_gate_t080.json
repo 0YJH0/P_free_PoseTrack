@@ -1,0 +1,45 @@
+{
+  "arm": "gate_t080",
+  "split": "held-out sequences != 00",
+  "n_objects": 4,
+  "n_sequences": 17,
+  "all_initial_geometry_hashes_match": true,
+  "baseline_mean_add_mm": 21.050534705882352,
+  "method_mean_add_mm": 22.422286470588237,
+  "baseline_mean_auc": 78.9407588235294,
+  "method_mean_auc": 77.71126470588234,
+  "mean_acceptance_rate": 0.9666666666666667,
+  "add_mm": {
+    "n_sequences": 17,
+    "mean_sequence_delta": 1.371751764705882,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": 1.5112210416666663,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -2.6851825156250007,
+      8.960694645833325
+    ],
+    "wilcoxon_two_sided_statistic": 50.0,
+    "wilcoxon_two_sided_p": 0.9031982421875,
+    "sign_test_two_sided_p": 0.79052734375,
+    "favorable": 6,
+    "unfavorable": 8,
+    "ties": 3
+  },
+  "auc": {
+    "n_sequences": 17,
+    "mean_sequence_delta": -1.2294941176470577,
+    "median_sequence_delta": 0.0,
+    "macro_object_delta": -1.394312499999999,
+    "macro_object_delta_ci95_hierarchical_bootstrap": [
+      -8.9062503125,
+      2.7275493125000003
+    ],
+    "wilcoxon_two_sided_statistic": 45.0,
+    "wilcoxon_two_sided_p": 1.0,
+    "sign_test_two_sided_p": 1.0,
+    "favorable": 6,
+    "unfavorable": 7,
+    "ties": 4
+  },
+  "multiple_testing_note": "ADD is primary; AUC is secondary and descriptive unless Holm-adjusted."
+}
